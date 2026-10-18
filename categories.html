@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Categories — ShopZone</title>
+  <meta name="description" content="Shop by category at ShopZone: sneakers, headphones, smartwatches, backpacks, accessories and fashion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="categories">
+  <div id="site-header"></div>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <div class="crumbs"><a href="index.html">Home</a> / <span>Categories</span></div>
+        <h1>Shop by Category</h1>
+        <p>Pick a category and explore everything we have, from performance footwear to everyday essentials.</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <div class="grid-3" id="cat-grid"></div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="container">
+        <div class="section-head"><div><h2>Top Rated Across All Categories</h2><p>Customer favourites with the best reviews.</p></div><a class="link-arrow" href="shop.html?sort=rating">See all <i data-i="arrow-right"></i></a></div>
+        <div class="grid-4" id="top-rated"></div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('shopzone:ready', () => {
+      $('#cat-grid').innerHTML = CATEGORIES.map(c => {
+        const n = PRODUCTS.filter(p => p.cat === c.id).length;
+        return `<a class="cat-card reveal" href="shop.html?cat=${c.id}">
+          <img loading="lazy" src="${unsplash(IMG_IDS[c.id][0], 700)}" alt="${c.name}" onerror="imgFallback(this)">
+          <div class="txt"><h3>${c.name}</h3><p>${c.desc}</p><span class="count">${n} Products ${icon('arrow-right')}</span></div></a>`;
+      }).join('');
+      renderProducts($('#top-rated'), [...PRODUCTS].sort((a, b) => b.rating - a.rating || b.reviews - a.reviews).slice(0, 4));
+    });
+  </script>
+</body>
+</html>

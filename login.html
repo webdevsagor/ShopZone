@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account — ShopZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="account">
+  <div id="site-header"></div>
+  <main>
+    <section>
+      <div class="container">
+        <div class="auth panel" id="auth-box"></div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* Front-end demo account: stores only name + email in this browser (no password is saved). */
+    document.addEventListener('shopzone:ready', () => {
+      const box = $('#auth-box');
+      function render() {
+        const user = store.get('shopzone_user', null);
+        if (user) {
+          const orders = store.get('shopzone_orders', []);
+          box.innerHTML = `<div class="profile">
+            <div class="avatar">${(user.name || 'U')[0].toUpperCase()}</div>
+            <h3>Hi, ${user.name}</h3>
+            <p style="color:var(--muted);margin:4px 0 22px">${user.email}</p>
+            <div class="sum-row"><span>Orders placed</span><b>${orders.length}</b></div>
+            <div class="sum-row"><span>Wishlist items</span><b>${Wish.get().length}</b></div>
+            <a href="wishlist.html" class="btn btn-outline btn-block" style="margin-top:20px">View Wishlist</a>
+            <button class="btn btn-ghost btn-block" id="logout" style="margin-top:10px">Sign out</button></div>`;
+          return;
+        }
+        box.innerHTML = `
+          <div class="auth-tabs"><button class="on" data-t="in">Sign in</button><button data-t="up">Create account</button></div>
+          <form id="f-in" class="on" novalidate>
+            <div class="field"><label for="i-email">Email</label><input id="i-email" name="email" type="email" required autocomplete="email"><div class="err">Enter a valid email.</div></div>
+            <div class="field"><label for="i-pass">Password</label><input id="i-pass" name="pass" type="password" required minlength="6" autocomplete="current-password"><div class="err">At least 6 characters.</div></div>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+          <form id="f-up" novalidate>
+            <div class="field"><label for="u-name">Full name</label><input id="u-name" name="name" required autocomplete="name"><div class="err">Required.</div></div>
+            <div class="field"><label for="u-email">Email</label><input id="u-email" name="email" type="email" required autocomplete="email"><div class="err">Enter a valid email.</div></div>
+            <div class="field"><label for="u-pass">Password</label><input id="u-pass" name="pass" type="password" required minlength="6" autocomplete="new-password"><div class="err">At least 6 characters.</div></div>
+            <button class="btn btn-primary btn-block" type="submit">Create account</button>
+          </form>`;
+      }
+      const validate = form => {
+        let ok = true;
+        [...form.elements].filter(f => f.name).forEach(f => {
+          const bad = !f.checkValidity() || !f.value.trim();
+          f.closest('.field').classList.toggle('bad', bad); if (bad) ok = false;
+        });
+        return ok;
+      };
+      box.addEventListener('click', e => {
+        const t = e.target.closest('[data-t]');
+        if (t) {
+          $$('.auth-tabs button').forEach(b => b.classList.toggle('on', b === t));
+          $('#f-in').classList.toggle('on', t.dataset.t === 'in');
+          $('#f-up').classList.toggle('on', t.dataset.t === 'up');
+        }
+        if (e.target.closest('#logout')) { localStorage.removeItem('shopzone_user'); toast('Signed out'); render(); }
+      });
+      box.addEventListener('input', e => e.target.closest('.field')?.classList.remove('bad'));
+      box.addEventListener('submit', e => {
+        e.preventDefault();
+        const f = e.target;
+        if (!validate(f)) return;
+        const email = f.email.value.trim();
+        const name = f.name ? f.name.value.trim() : email.split('@')[0];
+        store.set('shopzone_user', { name, email });
+        toast(f.id === 'f-up' ? 'Account created. Welcome!' : 'Signed in successfully');
+        setTimeout(() => location.reload(), 600);
+      });
+      render();
+    });
+  </script>
+</body>
+</html>

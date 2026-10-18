@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopZone — Modern E-commerce</title>
+  <meta name="description" content="ShopZone: premium sneakers, headphones, smartwatches, backpacks and more. Fast delivery and easy returns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card" id="hero"></div>
+        <div class="cat-strip" id="cat-strip"></div>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured Products</h2>
+            <p>Best selling products. Handpicked just for you.</p>
+          </div>
+          <a class="link-arrow" href="shop.html">View All Products <i data-i="arrow-right"></i></a>
+        </div>
+        <div class="grid-5" id="featured"></div>
+      </div>
+    </section>
+
+    <!-- DEAL -->
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="deal reveal">
+          <div>
+            <span class="eyebrow">Limited time offer</span>
+            <h2>Up to <span>30% off</span> on Headphones &amp; Smartwatches</h2>
+            <p>Upgrade your everyday tech. Offer ends when the timer hits zero, so don't wait too long.</p>
+            <a href="shop.html?cat=headphones" class="btn btn-primary">Grab the Deal <i data-i="arrow-right"></i></a>
+          </div>
+          <div class="countdown" id="countdown" aria-label="Offer countdown">
+            <div class="cd-box"><b id="cd-d">00</b><small>Days</small></div>
+            <div class="cd-box"><b id="cd-h">00</b><small>Hours</small></div>
+            <div class="cd-box"><b id="cd-m">00</b><small>Mins</small></div>
+            <div class="cd-box"><b id="cd-s">00</b><small>Secs</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW ARRIVALS -->
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>New Arrivals</h2>
+            <p>Fresh drops added this season.</p>
+          </div>
+          <a class="link-arrow" href="shop.html?sort=new">Shop New <i data-i="arrow-right"></i></a>
+        </div>
+        <div class="grid-4" id="arrivals"></div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section>
+      <div class="container">
+        <div class="features">
+          <div class="feature panel reveal"><div class="cat-ico"><i data-i="truck"></i></div><div><h4>Free Shipping</h4><p>On all orders over $100, delivered in 2–5 days.</p></div></div>
+          <div class="feature panel reveal"><div class="cat-ico"><i data-i="refresh"></i></div><div><h4>Easy Returns</h4><p>30-day hassle-free return and exchange policy.</p></div></div>
+          <div class="feature panel reveal"><div class="cat-ico"><i data-i="shield"></i></div><div><h4>Secure Payment</h4><p>100% protected checkout with trusted methods.</p></div></div>
+          <div class="feature panel reveal"><div class="cat-ico"><i data-i="headset"></i></div><div><h4>24/7 Support</h4><p>Real people ready to help any time you need.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="section-head"><div><h2>What Our Customers Say</h2><p>Thousands of happy shoppers across the country.</p></div></div>
+        <div class="grid-3">
+          <div class="testi panel reveal"><span class="stars" style="--r:100%">★★★★★</span><p>The sneakers are unbelievably comfortable and arrived two days early. Packaging was great too. Already ordering a second pair.</p><div class="who"><div class="avatar">R</div><div><b>Rafiq Ahmed</b><small>Verified buyer, Dhaka</small></div></div></div>
+          <div class="testi panel reveal"><span class="stars" style="--r:100%">★★★★★</span><p>Sound quality on the wireless headphones is far better than I expected at this price. Battery easily lasts the whole week.</p><div class="who"><div class="avatar">N</div><div><b>Nusrat Jahan</b><small>Verified buyer, Chattogram</small></div></div></div>
+          <div class="testi panel reveal"><span class="stars" style="--r:90%">★★★★★</span><p>Support helped me swap a backpack size within a day with no fuss. That's the kind of service that keeps me coming back.</p><div class="who"><div class="avatar">T</div><div><b>Tanvir Hasan</b><small>Verified buyer, Sylhet</small></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section style="padding-top:20px">
+      <div class="container">
+        <div class="newsletter reveal">
+          <h2>Join the ShopZone Club</h2>
+          <p>Get early access to new drops and exclusive discounts straight to your inbox.</p>
+          <form class="nl-form" data-newsletter novalidate>
+            <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Cart — ShopZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="cart">
+  <div id="site-header"></div>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <div class="crumbs"><a href="index.html">Home</a> / <span>Cart</span></div>
+        <h1>Shopping Cart</h1>
+      </div>
+    </div>
+    <section>
+      <div class="container" id="cart-root"></div>
+    </section>
+  </main>
+
+  <!-- Checkout modal -->
+  <div class="modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="co-title">
+    <div class="modal-box panel">
+      <button class="icon-btn modal-x" id="co-close" aria-label="Close"><i data-i="x"></i></button>
+      <div id="co-form-wrap">
+        <h3 id="co-title">Checkout</h3>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:22px">Total to pay: <b id="co-total" style="color:var(--accent)"></b></p>
+        <form id="co-form" novalidate>
+          <div class="row2">
+            <div class="field"><label for="co-name">Full name</label><input id="co-name" name="name" required autocomplete="name"><div class="err">Required.</div></div>
+            <div class="field"><label for="co-phone">Phone</label><input id="co-phone" name="phone" type="tel" required pattern="[0-9+\- ]{7,}" autocomplete="tel"><div class="err">Enter a valid phone.</div></div>
+          </div>
+          <div class="field"><label for="co-email">Email</label><input id="co-email" name="email" type="email" required autocomplete="email"><div class="err">Enter a valid email.</div></div>
+          <div class="field"><label for="co-addr">Delivery address</label><input id="co-addr" name="address" required autocomplete="street-address"><div class="err">Required.</div></div>
+          <div class="field"><label for="co-pay">Payment method</label>
+            <select id="co-pay" name="pay"><option>Cash on Delivery</option><option>bKash</option><option>Credit / Debit Card</option></select></div>
+          <button class="btn btn-primary btn-block" type="submit">Place Order <i data-i="arrow-right"></i></button>
+        </form>
+      </div>
+      <div class="success" id="co-success" hidden>
+        <div class="tick"><i data-i="check"></i></div>
+        <h3>Order placed!</h3>
+        <p style="color:var(--muted);margin:8px 0 4px">Thank you for shopping with ShopZone.</p>
+        <p>Your order number is <b id="co-num" style="color:var(--accent)"></b></p>
+        <a href="shop.html" class="btn btn-primary" style="margin-top:22px">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
